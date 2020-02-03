@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.quiz.QuizActivity">
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="10dp">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:id="@+id/tv_question"
+                android:layout_height="wrap_content"
+                tools:text="Soru burada"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1">
+
+
+
+            </TextView>
+
+
+
+
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="match_parent"
+                android:id="@+id/chip_group"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_question"
+                app:chipSpacing="20dp"
+                app:singleSelection="true"
+                android:layout_margin="16dp">
+
+                <com.google.android.material.chip.Chip
+                   style="@style/CheckChip"
+                    android:id="@+id/option_a_chip"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:text="option a"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CheckChip"
+                    android:layout_width="match_parent"
+                    android:id="@+id/option_b_chip"
+
+                    android:layout_height="wrap_content"
+                    android:text="option b"/>
+
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CheckChip"
+                    android:layout_width="match_parent"
+                    android:id="@+id/option_c_chip"
+
+                    android:layout_height="wrap_content"
+                    android:text="option c"/>
+
+
+
+            </com.google.android.material.chip.ChipGroup>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/next_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="Next"
+                app:cornerRadius="10dp"
+                app:rippleColor="@color/colorPrimaryDark">
+
+
+
+
+            </com.google.android.material.button.MaterialButton>
+
+
+
+
+        </RelativeLayout>
+
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

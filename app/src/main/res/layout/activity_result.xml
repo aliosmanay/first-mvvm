@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardCornerRadius="15dp"
+    android:layout_margin="15dp"
+    tools:context=".ui.result.ResultActivity">
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:id="@+id/result_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Result"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
+
+
+
+</com.google.android.material.card.MaterialCardView>
