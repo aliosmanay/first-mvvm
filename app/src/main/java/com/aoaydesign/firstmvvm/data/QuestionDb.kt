@@ -8,31 +8,30 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.aoaydesign.firstmvvm.model.Question
 
-@Database(entities = arrayOf(Question::class),version = 1)
-abstract class QuestionDb :RoomDatabase()  {
-    abstract fun questionDao():QuestionsDao
+@Database(entities = arrayOf(Question::class), version = 1)
+abstract class QuestionDb : RoomDatabase() {
+    abstract fun questionDao(): QuestionsDao
 
-
-    companion object{
+    companion object {
         @Volatile
-        var INSTANCE : QuestionDb?= null
+        var INSTANCE: QuestionDb? = null
 
         @Synchronized
-        fun getInstance(context :Context):QuestionDb{
-            if(INSTANCE==null){
-               INSTANCE=Room.databaseBuilder(
-                   context.applicationContext,
-                   QuestionDb::class.java,
-                   "question_db"
-               )
-                   .addCallback(roomDBCallback)
-                   .build()
+        fun getInstance(context: Context): QuestionDb {
+            if (INSTANCE == null) {
+                INSTANCE = Room.databaseBuilder(
+                    context.applicationContext,
+                    QuestionDb::class.java,
+                    "question_db"
+                )
+                    .addCallback(roomDBCallback)
+                    .build()
             }
 
             return INSTANCE as QuestionDb
         }
 
-        private val roomDBCallback=object :RoomDatabase.Callback(){
+        private val roomDBCallback = object : RoomDatabase.Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
                 PopulateAsynTask(INSTANCE).execute()
@@ -40,20 +39,20 @@ abstract class QuestionDb :RoomDatabase()  {
             }
         }
 
-        class PopulateAsynTask(private val db: QuestionDb?):AsyncTask<Void,Void,Void>(){
-            private val dao :QuestionsDao? by lazy { db?.questionDao() }
+        class PopulateAsynTask(private val db: QuestionDb?) : AsyncTask<Void, Void, Void>() {
+            private val dao: QuestionsDao? by lazy { db?.questionDao() }
 
             override fun doInBackground(vararg params: Void?): Void? {
-               var question=Question(
-                   question = "Turkiye liginde en cok sampiyon olan takim hangisidir?",
-                   optionA = "Fenerbahce",
-                   optionB = "Galatasaray",
-                   optionC = "Besiktas",
-                   answer = "Galatasaray"
-               )
+                var question = Question(
+                    question = "Turkiye liginde en cok sampiyon olan takim hangisidir?",
+                    optionA = "Fenerbahce",
+                    optionB = "Galatasaray",
+                    optionC = "Besiktas",
+                    answer = "Galatasaray"
+                )
                 dao?.addQuestion(question)
 
-                 question=Question(
+                question = Question(
                     question = "Turkiye liginde en cok sampiyon olan basketbol takim hangisidir?",
                     optionA = "Fenerbahce",
                     optionB = "Galatasaray",
@@ -62,7 +61,7 @@ abstract class QuestionDb :RoomDatabase()  {
                 )
                 dao?.addQuestion(question)
 
-                 question=Question(
+                question = Question(
                     question = "Turkiye Kupasinda en cok sampiyon olan takim hangisidir?",
                     optionA = "Fenerbahce",
                     optionB = "Galatasaray",

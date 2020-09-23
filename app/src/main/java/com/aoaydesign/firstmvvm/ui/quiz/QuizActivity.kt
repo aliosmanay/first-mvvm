@@ -16,23 +16,23 @@ import kotlinx.android.synthetic.main.activity_quiz.*
 class QuizActivity : AppCompatActivity() {
 
     private lateinit var viewModel: QuizViewModel
-    private var questionList:List<Question> = arrayListOf()
-    private var qIndex: Int =0
-    private var score:Int=0
+    private var questionList: List<Question> = arrayListOf()
+    private var qIndex: Int = 0
+    private var score: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
 
-        viewModel= ViewModelProviders.of(this).get(QuizViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(QuizViewModel::class.java)
 
         viewModel.allQuestions.observe(this, Observer {
 
-            if(it.isNotEmpty()){
-                questionList=it
+            if (it.isNotEmpty()) {
+                questionList = it
                 setViews()
                 next_btn.setOnClickListener {
-                    val answer=findViewById<Chip>(chip_group.checkedChipId)
+                    val answer = findViewById<Chip>(chip_group.checkedChipId)
 
                     chip_group.clearCheck()
 
@@ -40,45 +40,39 @@ class QuizActivity : AppCompatActivity() {
 
                     qIndex++
 
-                    if(qIndex<questionList.size)setViews()
-                    else{
-                       val intent = Intent(this,ResultActivity::class.java)
-                        intent.putExtra("score",score)
-                        intent.putExtra("arraySize",questionList.size)
+                    if (qIndex < questionList.size) setViews()
+                    else {
+                        val intent = Intent(this, ResultActivity::class.java)
+                        intent.putExtra("score", score)
+                        intent.putExtra("arraySize", questionList.size)
                         startActivity(intent)
                         finish()
                     }
 
-
-
-
-
                 }
-
-
             }
-
-
         })
 
     }
 
-    private fun setViews(){
-        tv_question.text=questionList[qIndex].question
-        option_a_chip.text=questionList[qIndex].optionA
-        option_b_chip.text=questionList[qIndex].optionB
-        option_c_chip.text=questionList[qIndex].optionC
+    private fun setViews() {
+        tv_question.text = questionList[qIndex].question
+        option_a_chip.text = questionList[qIndex].optionA
+        option_b_chip.text = questionList[qIndex].optionB
+        option_c_chip.text = questionList[qIndex].optionC
     }
 
-    private fun checkAnswer(answer:Chip){
-        if(questionList[qIndex].answer==answer.text){
-            Toast.makeText(this,"Dogru Cevap",Toast.LENGTH_SHORT).show()
+    private fun checkAnswer(answer: Chip) {
+        if (questionList[qIndex].answer == answer.text) {
+            Toast.makeText(this, "Dogru Cevap", Toast.LENGTH_SHORT).show()
             score++
-        }else{
-            Toast.makeText(this,"Yanlis Cevap \n Cevap= ${questionList[qIndex].answer} " ,Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(
+                this,
+                "Yanlis Cevap \n Cevap= ${questionList[qIndex].answer} ",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
-
-
 
 }
