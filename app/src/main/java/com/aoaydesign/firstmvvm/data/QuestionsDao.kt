@@ -11,7 +11,7 @@ import com.aoaydesign.firstmvvm.model.Question
 interface QuestionsDao {
 
     @Query("SELECT * FROM questions")
-    fun getQuestions():LiveData<List<Question>>
+    fun getQuestions(): LiveData<List<Question>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addQuestion(question: Question)
@@ -19,6 +19,5 @@ interface QuestionsDao {
 
     @Query("DELETE FROM  questions")
     fun deleteALL()
-
 
 }
